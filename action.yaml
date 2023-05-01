@@ -1,0 +1,38 @@
+name: "tfmake install"
+description: "tfmake install."
+
+author: tfmake
+
+branding:
+  icon: "box"
+  color: "green"
+
+inputs:
+  tfmake_version:
+    description: "ftmake version."
+    required: true
+    default: main
+
+  download_path:
+    description: "Download path."
+    required: false
+    default: tfmake
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout tfmake
+      uses: actions/checkout@v3
+      with:
+        repository: tfmake/tfmake
+        path: ${{ inputs.download_path }}
+        ref: ${{ inputs.tfmake_version }}
+
+    - name: Install tfmake
+      shell: bash
+      run: |
+        sudo cp -r "${DONWLOAD_PATH}/usr/* /usr/"
+        sudo chmod +x /usr/local/bin/tfmake
+        rm -rf "${DONWLOAD_PATH}"
+      env:
+        DONWLOAD_PATH: ${{ inputs.download_path }}
