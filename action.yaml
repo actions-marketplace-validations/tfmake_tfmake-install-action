@@ -31,7 +31,7 @@ runs:
     - name: Install tfmake
       shell: bash
       run: |
-        sudo cp -r "${DONWLOAD_PATH}/usr/* /usr/"
+        sudo cp -r "${DONWLOAD_PATH}"/usr/* /usr/
         sudo chmod +x /usr/local/bin/tfmake
         rm -rf "${DONWLOAD_PATH}"
       env:
